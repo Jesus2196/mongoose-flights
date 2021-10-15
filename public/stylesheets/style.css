@@ -1,0 +1,21 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+th {
+  font-size: 34px;
+}
+
+.cancel:hover {
+  color: red;
+  transform: translateY(-2px);
+}
+
+table {
+  margin-top: 25px;
+}
+
+nav {
+  margin-bottom: 25px;
+}

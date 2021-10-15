@@ -1,0 +1,102 @@
+<%- include('../partials/header') %>
+
+    <div class="text-center">
+        <h1>Flight Details</h1>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Airline</th>
+                    <th>Airport</th>
+                    <th>Flight Number</th>
+                    <th>Departure Airport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>
+                    <%= flight.airline %>
+                </td>
+                <td>
+                    <%= flight.airport %>
+                </td>
+                <td>
+                    <%= flight.flightNo %>
+                </td>
+                <td>
+                    <%= flight.departs.toLocaleString(); %>
+                </td>
+            </tbody>
+        </table><br>
+
+        <h1>Ticket Details</h1>
+
+        <a href="/flights/<%= flight._id %>/tickets/new">Create Tickets</a>
+
+        <table class="table table-striped table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Seat Choice</th>
+                    <th>Ticket Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% tickets.forEach(function(t) { %>
+                    <tr>
+                        <td>
+                            <%= t.seat %>
+                        </td>
+                        <td>
+                            $<%= t.price %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <br>
+
+        <h1>Destination Details</h1>
+
+        <h3 class="text-center">Add Destination</h3>
+
+        <form class="text-center" method="POST" action="/flights/<%= flight._id %>/destinations">
+            <label for="destination">
+                Destination:
+                <select name="airport">
+                    <option value="AUS">AUS</option>
+                    <option value="DAL">DAL</option>
+                    <option value="LAX">LAX</option>
+                    <option value="SAN">SAN</option>
+                    <option value="SEA">SEA</option>
+                </select>
+            </label>
+            <label for="date">
+                Date:
+                <input type="datetime-local" name="arrival" required>
+            </label>
+            <button type="submit">Submit</button>
+        </form><br>
+
+        <table class="table table-striped table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Destination</th>
+                    <th>Arrival Time</th>
+\                </tr>
+            </thead>
+            <tbody>
+                <% flight.destinations.forEach((dest)=> { %>
+                    <tr>
+                        <td>
+                            <%= dest.airport %>
+                        </td>
+                        <td>
+                            <%= dest.arrival.toLocaleString(); %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+
+    <%- include('../partials/footer') %>
